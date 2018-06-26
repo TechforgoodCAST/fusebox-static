@@ -3,6 +3,7 @@ import Vue from 'vue/dist/vue.esm.js';
 import marked from 'marked';
 
 import Heading from '../../components/heading.vue';
+import PlanList from '../../components/plan-list.vue';
 import Statement from '../../components/statement.vue';
 
 const DISCOVERY_DOCS = ['https://sheets.googleapis.com/$discovery/rest?version=v4'];
@@ -14,8 +15,9 @@ const vm = new Vue({
   el: '#app',
   data: { data: DATA },
   components: {
-    heading: Heading,
-    statement: Statement
+    Heading,
+    PlanList,
+    Statement
   }
 });
 

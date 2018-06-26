@@ -8,11 +8,15 @@
 </head>
 <body>
   <div id="app">
-    <header class="white">
+    <header class="snow">
       <nav class="bg-midnight">
-        <div class="maxw1080 mxauto p15">
-          Fusebox
-          <span class="fs14">by CAST</span>
+        <div class="maxw1080 mxauto p15 flex justify-between items-center">
+          <div>
+            Fusebox
+            <span class="fs14">by CAST</span>
+          </div>
+
+          <a href="mailto:hello@wearecast.org.uk?subject=Fusebox"  target="_blank" class="snow">Help</a>
         </div>
       </nav>
 
@@ -37,11 +41,7 @@
           <statement heading="Organisation" :data="data.statement"></statement>
         </section>
 
-        <aside class="px15" style="flex: 1 2 280px;">
-          <div class="bg-white p20 shadow">
-            <h3 class="grey">Plans</h3>
-          </div>
-        </aside>
+        <plan-list></plan-list>
 
       </div>
     </div>

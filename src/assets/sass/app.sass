@@ -12,6 +12,7 @@
 @import ./modules/typography
 
 @import ./components/header
+@import ./components/plan-list
 
 // Base
 // ===========================================================================
@@ -27,10 +28,17 @@ a
   &:hover
     text-decoration: underline
 
+hr
+  border-style: solid
+  border-color: map-get($colors, 'fog') transparent transparent transparent
+
+
 // Layout
 // ===========================================================================
 
 .maxw1080
   max-width: 1080px
+.block
+  display: block
 .inline
   display: inline
