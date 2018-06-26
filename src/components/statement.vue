@@ -5,7 +5,6 @@
       <div>
         <h3 class="inline grey">{{ heading }}</h3>
         <a href="#statement-count" class="ml7">(0)</a>
-        <a href="#last-updated" class="ml15">{{ data.lastUpdated }}</a>
       </div>
 
       <a href="#edit-statement" class="tooltip" aria-label="Coming soon">Edit</a>
@@ -22,7 +21,7 @@
         <a href="#evidence-count">0 evidence</a>
       </div>
 
-      <a href="#add-assumption" class="btn white bg-aqua tooltip" aria-label="Coming soon">+ Add assumption</a>
+      <a href="#add-assumption" class="btn white bg-aqua tooltip" aria-label="Coming soon">+</a>
     </div>
   </article>
 </template>

@@ -7,8 +7,10 @@ import PlanList from '../../components/plan-list.vue';
 import Statement from '../../components/statement.vue';
 
 const DISCOVERY_DOCS = ['https://sheets.googleapis.com/$discovery/rest?version=v4'];
+const SHEET_ID = '1W7o2Ce5cgLQJyWFU1Tu_I5FMxtEfPtnduAOek7KxDPU';
 const DATA = {
-  statement: {}
+  dashboard: {},
+  plans: []
 };
 
 const vm = new Vue({
@@ -30,26 +32,29 @@ function initClient(gapi) {
     apiKey: API_KEY,
     discoveryDocs: DISCOVERY_DOCS
   }).then(function () {
-    listAssumptions(gapi);
+    getDashboard(gapi);
+    getPlans(gapi);
   });
 }
 
-function listAssumptions(gapi) {
+function getDashboard(gapi) {
   gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: '1W7o2Ce5cgLQJyWFU1Tu_I5FMxtEfPtnduAOek7KxDPU',
-    range: 'demo!A2:F',
+    spreadsheetId: SHEET_ID,
+    range: 'dashboard!A2:H',
   }).then(function(response) {
     var range = response.result;
     if (range.values.length > 0) {
 
       const firstRow = range.values[0]
-      DATA.statement = {
-        lastUpdated: firstRow[0],
-        solution: marked(firstRow[1]),
-        user: marked(firstRow[2]),
-        social: marked(firstRow[3]),
-        financial: marked(firstRow[4]),
-        organisation: marked(firstRow[5])
+      DATA.dashboard = {
+        team: firstRow[0],
+        project: firstRow[1],
+        description: firstRow[2],
+        solution: marked(firstRow[3]),
+        user: marked(firstRow[4]),
+        social: marked(firstRow[5]),
+        financial: marked(firstRow[6]),
+        organisation: marked(firstRow[7])
       };
 
     } else {
@@ -57,5 +62,49 @@ function listAssumptions(gapi) {
     }
   }, function(response) {
     appendPre('Error: ' + response.result.error.message);
+  });
+}
+
+function getPlans(gapi) {
+  gapi.client.sheets.spreadsheets.get({
+    spreadsheetId: SHEET_ID
+  }).then(function(response) {
+    const sheets = response.result.sheets;
+    sheets.forEach(function (sheet) {
+      const title = sheet.properties.title;
+
+      if (title.match(/^testing-plan/)) {
+        getPlan(gapi, title);
+      }
+    });
+  });
+}
+
+function getPlan(gapi, sheet) {
+  gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SHEET_ID,
+    range: `${sheet}!A:H`,
+  }).then(function(response) {
+    const range = response.result;
+    if (range.values) {
+      const planDetails = range.values[1];
+
+      const plan = {
+        name: planDetails[0],
+        description: planDetails[1],
+        dueDate: planDetails[2],
+        lastUpdated: planDetails[3],
+        status: planDetails[4],
+        items: []
+      };
+
+      range.values.slice(4).forEach(function (row) {
+        plan.items.push({
+          assumption: row[0]
+        });
+      });
+
+      DATA.plans.push(plan);
+    }
   });
 }

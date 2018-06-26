@@ -1,15 +1,10 @@
 <template>
-  <div class="maxw1080 mxauto py25 flex">
+  <div class="maxw1080 mxauto py25 flex items-center">
     <h1 class="h2 px15">
-      STEM4 /
-      <span class="bold">
-        Clear Fear
-      </span>
+      {{ data.team }} / <span class="bold">{{ data.project }}</span>
     </h1>
 
-    <div class="h3 px15">
-      A co-designed digital tool enabling children and young people to manage anxiety using ideas from CBT
-    </div>
+    <div class="h3 px15">{{ data.description }}</div>
   </div>
 </template>
 
