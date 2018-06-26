@@ -7,6 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <h1>Fusebox static</h1>
+  <main id="app">
+    <ol>
+      <li v-for="experiment in experiments">
+        {{ experiment.name }}
+      </li>
+    </ol>
+  </main>
 </body>
 </html>

@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -45,6 +48,9 @@ module.exports = {
           disallow: "/"
         }
       ]
+    }),
+    new webpack.DefinePlugin({
+      'API_KEY': JSON.stringify(process.env.API_KEY)
     })
   ]
 };
