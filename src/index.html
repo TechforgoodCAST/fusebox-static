@@ -7,12 +7,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <main id="app">
-    <ol>
-      <li v-for="experiment in experiments">
-        {{ experiment.name }}
-      </li>
-    </ol>
-  </main>
+  <div id="app">
+    <header class="white">
+      <nav class="bg-midnight">
+        <div class="maxw1080 mxauto p15">
+          Fusebox
+          <span class="fs14">by CAST</span>
+        </div>
+      </nav>
+
+      <div class="bg-dashboard">
+        <heading :data="data.project"></heading>
+
+        <div class="maxw1080 mxauto px15 flex">
+          <a href="/" class="black bg-ice px20 py10">Dashboard</a>
+          <a href="#plans" class="ice subnav px20 py10">Plans</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="bg-ice">
+      <div class="maxw1080 mxauto py30 flex flex-wrap">
+
+        <section class="px15" style="flex: 2 0 55%;">
+          <statement heading="Solution" :data="data.statement"></statement>
+          <statement heading="User" :data="data.statement"></statement>
+          <statement heading="Social" :data="data.statement"></statement>
+          <statement heading="Financial" :data="data.statement"></statement>
+          <statement heading="Organisation" :data="data.statement"></statement>
+        </section>
+
+        <aside class="px15" style="flex: 1 2 280px;">
+          <div class="bg-white p20 shadow">
+            <h3 class="grey">Plans</h3>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+
+    <footer></footer>
+  </div>
 </body>
 </html>

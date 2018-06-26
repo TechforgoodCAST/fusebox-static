@@ -1,12 +1,22 @@
 import gapi from 'google-client-api';
 import Vue from 'vue/dist/vue.esm.js';
+import marked from 'marked';
+
+import Heading from '../../components/heading.vue';
+import Statement from '../../components/statement.vue';
 
 const DISCOVERY_DOCS = ['https://sheets.googleapis.com/$discovery/rest?version=v4'];
-const DATA = [];
+const DATA = {
+  statement: {}
+};
 
 const vm = new Vue({
   el: '#app',
-  data: { experiments: DATA }
+  data: { data: DATA },
+  components: {
+    heading: Heading,
+    statement: Statement
+  }
 });
 
 gapi().then(function(gapi) {
@@ -25,19 +35,21 @@ function initClient(gapi) {
 function listAssumptions(gapi) {
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1W7o2Ce5cgLQJyWFU1Tu_I5FMxtEfPtnduAOek7KxDPU',
-    range: 'demo!A2:D',
+    range: 'demo!A2:F',
   }).then(function(response) {
     var range = response.result;
     if (range.values.length > 0) {
-      for (var i = 0; i < range.values.length; i++) {
-        var row = range.values[i];
-        DATA.push({
-          'id': row[0],
-          'published': row[1],
-          'status': row[2],
-          'name': row[3]
-        })
-      }
+
+      const firstRow = range.values[0]
+      DATA.statement = {
+        lastUpdated: firstRow[0],
+        solution: marked(firstRow[1]),
+        user: marked(firstRow[2]),
+        social: marked(firstRow[3]),
+        financial: marked(firstRow[4]),
+        organisation: marked(firstRow[5])
+      };
+
     } else {
       appendPre('No data found.');
     }

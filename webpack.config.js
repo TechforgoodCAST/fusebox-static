@@ -5,6 +5,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   entry: ['./src/assets/js/app.js', './src/assets/sass/app.sass'],
@@ -30,6 +31,17 @@ module.exports = {
             { loader: 'sass-loader' }
           ]
         })
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader'
+        ]
       }
     ]
   },
@@ -41,6 +53,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
+    new HtmlWebpackPlugin({
+      filename: 'plan.html',
+      template: 'src/views/plan.html'
+    }),
     new RobotstxtPlugin({
       policy: [
         {
@@ -49,8 +65,16 @@ module.exports = {
         }
       ]
     }),
+    new VueLoaderPlugin(),
     new webpack.DefinePlugin({
       'API_KEY': JSON.stringify(process.env.API_KEY)
     })
-  ]
+  ],
+  devServer: {
+    historyApiFallback: {
+      rewrites: [
+        { from: /^\/plan/, to: '/plan.html' },
+      ]
+    }
+  }
 };

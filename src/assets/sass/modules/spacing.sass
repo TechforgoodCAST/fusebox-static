@@ -1,0 +1,40 @@
+$spaces: (7, 10, 15, 20, 25, 30)
+
+.mxauto
+  margin-right: auto
+  margin-left: auto
+
+@each $px in $spaces
+  .m#{$px}
+    margin: #{$px}px
+  .mx#{$px}
+    margin-left: #{$px}px
+    margin-right: #{$px}px
+  .my#{$px}
+    margin-top: #{$px}px
+    margin-bottom: #{$px}px
+  .mt#{$px}
+    margin-top: #{$px}px
+  .mr#{$px}
+    margin-right: #{$px}px
+  .mb#{$px}
+    margin-bottom: #{$px}px
+  .ml#{$px}
+    margin-left: #{$px}px
+
+  .p#{$px}
+    padding: #{$px}px
+  .px#{$px}
+    padding-left: #{$px}px
+    padding-right: #{$px}px
+  .py#{$px}
+    padding-top: #{$px}px
+    padding-bottom: #{$px}px
+  .pt#{$px}
+    padding-top: #{$px}px
+  .pr#{$px}
+    padding-right: #{$px}px
+  .pb#{$px}
+    padding-bottom: #{$px}px
+  .pl#{$px}
+    padding-left: #{$px}px

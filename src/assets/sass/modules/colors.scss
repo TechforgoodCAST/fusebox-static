@@ -1,0 +1,27 @@
+$colors: (
+  'white': #FFFFFF,
+  'dashboard': #2E576F,
+  'ice': #F6F8FA,
+  'snow': #FAFAFA,
+  'midnight': #1F343D,
+  'black': #0B0B0B,
+  'aqua': #3AADB6,
+  'teal': #25969F,
+  'grey': #767C88,
+  'fog': #E2E3E6,
+  'mist': #F7FBFF,
+  'haze': #C0C3C8,
+  'green': #A1B32C
+);
+
+@each $var, $val in $colors {
+  .#{$var} {
+    color: $val;
+    &:visited {
+      color: $val;
+    }
+  }
+  .bg-#{$var} {
+    background-color: $val !important;
+  }
+}

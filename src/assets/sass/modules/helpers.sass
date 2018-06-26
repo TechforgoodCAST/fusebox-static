@@ -1,0 +1,4 @@
+=prefix($prop, $val, $prefixes: ())
+  @each $prefix in $prefixes
+    #{'-' + $prefix + '-' + $prop}: $val
+    #{$prop}: $val
