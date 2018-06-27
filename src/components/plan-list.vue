@@ -3,7 +3,7 @@
     <div class="bg-white shadow">
       <div class="p20 flex justify-between items-center">
         <h3 class="grey">Recent plans</h3>
-        <a href="/plans">View all</a>
+        <a :href="plansPath">View all</a>
       </div>
 
       <div v-show="data.loaded === 1">
@@ -33,6 +33,11 @@
     components: {
       Loading,
       PlanListItem
+    },
+    data: function () {
+      return {
+        plansPath: `/plans?t=${this.data.params.t}`
+      }
     }
   }
 </script>
