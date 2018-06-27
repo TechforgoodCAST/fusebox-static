@@ -6,6 +6,7 @@ import queryParams from './modules/params.js';
 
 import Plan from '../../components/plan.vue';
 import PlanList from '../../components/plan-list.vue';
+import SiteFooter from '../../components/site-footer.vue';
 import SiteHeader from '../../components/site-header.vue';
 import Statement from '../../components/statement.vue';
 
@@ -23,6 +24,7 @@ const vm = new Vue({
   components: {
     Plan,
     PlanList,
+    SiteFooter,
     SiteHeader,
     Statement
   },
