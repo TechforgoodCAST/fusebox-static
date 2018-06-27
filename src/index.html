@@ -8,27 +8,7 @@
 </head>
 <body>
   <div id="app">
-    <header class="snow">
-      <nav class="bg-midnight">
-        <div class="maxw1080 mxauto p15 flex justify-between items-center">
-          <div>
-            Fusebox
-            <span class="fs14">by CAST</span>
-          </div>
-
-          <a href="mailto:hello@wearecast.org.uk?subject=Fusebox"  target="_blank" class="snow">Help</a>
-        </div>
-      </nav>
-
-      <div class="bg-dashboard">
-        <heading :data="data.dashboard"></heading>
-
-        <div class="maxw1080 mxauto px15 flex">
-          <a href="/" class="black bg-ice px20 py10">Dashboard</a>
-          <a href="/plans" class="ice subnav px20 py10">Plans</a>
-        </div>
-      </div>
-    </header>
+    <site-header :data="data" bg="bg-dashboard" :is-dashboard="true"></site-header>
 
     <main class="bg-ice">
       <div class="maxw1080 mxauto py30 flex flex-wrap">

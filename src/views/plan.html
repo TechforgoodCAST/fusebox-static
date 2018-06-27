@@ -7,6 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <h1>Plan</h1>
+  <div id="app">
+    <site-header :data="data" bg="bg-plans" :is-plans="true"></site-header>
+
+    {{ data.plans.filter((i) => i.sheet === data.params.name)[0] }}
+  </div>
 </body>
 </html>

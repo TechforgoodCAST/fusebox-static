@@ -57,6 +57,10 @@ module.exports = {
       filename: 'plan.html',
       template: 'src/views/plan.html'
     }),
+    new HtmlWebpackPlugin({
+      filename: 'plans.html',
+      template: 'src/views/plans.html'
+    }),
     new RobotstxtPlugin({
       policy: [
         {
@@ -73,7 +77,8 @@ module.exports = {
   devServer: {
     historyApiFallback: {
       rewrites: [
-        { from: /^\/plan/, to: '/plan.html' },
+        { from: /^\/plans/, to: '/plans.html' },
+        { from: /^\/plan/, to: '/plan.html' }
       ]
     }
   }

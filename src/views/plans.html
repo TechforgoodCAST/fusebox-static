@@ -7,6 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <h1>Plans</h1>
+  <div id="app">
+    <site-header :data="data" bg="bg-plans" :is-plans="true"></site-header>
+
+    <main class="bg-ice">
+      <div class="maxw1080 mxauto py30">
+        <plan-list :plans="data.plans"></plan-list>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

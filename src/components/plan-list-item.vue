@@ -1,7 +1,7 @@
 <template>
   <div>
     <hr>
-    <a href="#plan-list-item" class="block p20 plan-list-item">
+    <a :href="planPath" class="block p20 plan-list-item">
       <h4 class="mb10 black">{{ plan.name }}</h4>
       <div class="mb15 f415 grey">{{ plan.description }}</div>
       <div class="bold green caps heading fs14">{{ plan.status }}</div>
@@ -13,6 +13,11 @@
 export default {
   props: {
     plan: Object
+  },
+  data: function () {
+    return {
+      planPath: `/plan?name=${this.plan.sheet}`
+    };
   }
 }
 </script>

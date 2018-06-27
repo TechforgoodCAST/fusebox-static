@@ -2,23 +2,26 @@ import gapi from 'google-client-api';
 import Vue from 'vue/dist/vue.esm.js';
 import marked from 'marked';
 
-import Heading from '../../components/heading.vue';
+import queryParams from './modules/params.js';
+
 import PlanList from '../../components/plan-list.vue';
+import SiteHeader from '../../components/site-header.vue';
 import Statement from '../../components/statement.vue';
 
 const DISCOVERY_DOCS = ['https://sheets.googleapis.com/$discovery/rest?version=v4'];
 const SHEET_ID = '1W7o2Ce5cgLQJyWFU1Tu_I5FMxtEfPtnduAOek7KxDPU';
 const DATA = {
   dashboard: {},
-  plans: []
+  plans: [],
+  params: queryParams.all(window.location.search, ['t', 'name'])
 };
 
 const vm = new Vue({
   el: '#app',
   data: { data: DATA },
   components: {
-    Heading,
     PlanList,
+    SiteHeader,
     Statement
   }
 });
@@ -90,6 +93,7 @@ function getPlan(gapi, sheet) {
       const planDetails = range.values[1];
 
       const plan = {
+        sheet: sheet,
         name: planDetails[0],
         description: planDetails[1],
         dueDate: planDetails[2],
