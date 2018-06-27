@@ -4,6 +4,7 @@ import marked from 'marked';
 
 import queryParams from './modules/params.js';
 
+import Plan from '../../components/plan.vue';
 import PlanList from '../../components/plan-list.vue';
 import SiteHeader from '../../components/site-header.vue';
 import Statement from '../../components/statement.vue';
@@ -20,9 +21,15 @@ const vm = new Vue({
   el: '#app',
   data: { data: DATA },
   components: {
+    Plan,
     PlanList,
     SiteHeader,
     Statement
+  },
+  methods: {
+    getPlan: function (sheetName) {
+      return this.data.plans.filter((i) => i.sheet === sheetName)[0];
+    }
   }
 });
 
@@ -104,7 +111,12 @@ function getPlan(gapi, sheet) {
 
       range.values.slice(4).forEach(function (row) {
         plan.items.push({
-          assumption: row[0]
+          assumption: row[0],
+          status: row[1],
+          category: row[2],
+          details: marked(row[5]),
+          success: marked(row[6]),
+          support: marked(row[7])
         });
       });
 

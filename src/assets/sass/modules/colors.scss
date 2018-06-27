@@ -12,7 +12,9 @@ $colors: (
   'mist': #F7FBFF,
   'haze': #C0C3C8,
   'green': #A1B32C,
-  'plans': #835996
+  'plans': #835996,
+  'dusk': #F9F5FA,
+  'purple': #A388AB
 );
 
 @each $var, $val in $colors {
