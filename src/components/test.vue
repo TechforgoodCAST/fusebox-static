@@ -1,5 +1,5 @@
-<template>
-  <li v-if="test">
+<template v-if="test">
+  <li>
     <article class="bg-white mb30 shadow">
 
       <div class="p20 bg-dusk flex justify-between items-center">

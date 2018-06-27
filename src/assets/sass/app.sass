@@ -6,6 +6,7 @@
 @import ./modules/button
 @import ./modules/colors
 @import ./modules/flexbox
+@import ./modules/loading
 @import ./modules/spacing
 @import ./modules/shadow
 @import ./modules/tooltip
@@ -41,3 +42,11 @@ hr
   display: block
 .inline
   display: inline
+
+#app
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+
+main
+  flex: 1

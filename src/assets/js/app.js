@@ -10,8 +10,8 @@ import SiteHeader from '../../components/site-header.vue';
 import Statement from '../../components/statement.vue';
 
 const DISCOVERY_DOCS = ['https://sheets.googleapis.com/$discovery/rest?version=v4'];
-const SHEET_ID = '1W7o2Ce5cgLQJyWFU1Tu_I5FMxtEfPtnduAOek7KxDPU';
 const DATA = {
+  loaded: 0,
   dashboard: {},
   plans: [],
   params: queryParams.all(window.location.search, ['t', 'name'])
@@ -34,6 +34,9 @@ const vm = new Vue({
 });
 
 gapi().then(function(gapi) {
+  if (!DATA.params.t) {
+    return DATA.loaded = -1;
+  }
   gapi.load('client', initClient(gapi));
 });
 
@@ -49,7 +52,7 @@ function initClient(gapi) {
 
 function getDashboard(gapi) {
   gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: SHEET_ID,
+    spreadsheetId: DATA.params.t,
     range: 'dashboard!A2:H',
   }).then(function(response) {
     var range = response.result;
@@ -68,16 +71,16 @@ function getDashboard(gapi) {
       };
 
     } else {
-      appendPre('No data found.');
+      DATA.loaded = -1;
     }
   }, function(response) {
-    appendPre('Error: ' + response.result.error.message);
+    DATA.loaded = -1;
   });
 }
 
 function getPlans(gapi) {
   gapi.client.sheets.spreadsheets.get({
-    spreadsheetId: SHEET_ID
+    spreadsheetId: DATA.params.t
   }).then(function(response) {
     const sheets = response.result.sheets;
     sheets.forEach(function (sheet) {
@@ -86,13 +89,15 @@ function getPlans(gapi) {
       if (title.match(/^testing-plan/)) {
         getPlan(gapi, title);
       }
+
+      DATA.loaded = 1;
     });
   });
 }
 
 function getPlan(gapi, sheet) {
   gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: SHEET_ID,
+    spreadsheetId: DATA.params.t,
     range: `${sheet}!A:H`,
   }).then(function(response) {
     const range = response.result;
@@ -106,11 +111,11 @@ function getPlan(gapi, sheet) {
         dueDate: planDetails[2],
         lastUpdated: planDetails[3],
         status: planDetails[4],
-        items: []
+        tests: []
       };
 
       range.values.slice(4).forEach(function (row) {
-        plan.items.push({
+        plan.tests.push({
           assumption: row[0],
           status: row[1],
           category: row[2],

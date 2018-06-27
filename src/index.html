@@ -14,14 +14,14 @@
       <div class="maxw1080 mxauto py30 flex flex-wrap">
 
         <section class="px15" style="flex: 2 0 55%;">
-          <statement heading="Solution" :data="data.dashboard"></statement>
-          <statement heading="User" :data="data.dashboard"></statement>
-          <statement heading="Social" :data="data.dashboard"></statement>
-          <statement heading="Financial" :data="data.dashboard"></statement>
-          <statement heading="Organisation" :data="data.dashboard"></statement>
+          <statement :data="data" heading="Solution"></statement>
+          <statement :data="data" heading="User"></statement>
+          <statement :data="data" heading="Social"></statement>
+          <statement :data="data" heading="Financial"></statement>
+          <statement :data="data" heading="Organisation"></statement>
         </section>
 
-        <plan-list :plans="data.plans"></plan-list>
+        <plan-list :data="data"></plan-list>
 
       </div>
     </main>

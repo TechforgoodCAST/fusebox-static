@@ -6,19 +6,32 @@
         <a href="/plans">View all</a>
       </div>
 
-      <plan-list-item v-for="(plan, index) in plans.slice(0, 3)" :key="index" :plan="plan"></plan-list-item>
+      <div v-show="data.loaded === 1">
+        <plan-list-item
+          v-for="(plan, index) in data.plans.slice(0, 3)"
+          :key="index"
+          :plan="plan"
+          :t="data.params.t">
+        </plan-list-item>
+      </div>
+
+      <hr v-show="data.loaded === 0 || -1">
+      <loading :loaded="data.loaded" wrapper="m20"></loading>
+
     </div>
   </aside>
 </template>
 
 <script>
+  import Loading from './loading.vue';
   import PlanListItem from './plan-list-item.vue';
 
   export default {
     props: {
-      plans: Array
+      data: Object
     },
     components: {
+      Loading,
       PlanListItem
     }
   }

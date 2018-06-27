@@ -10,7 +10,13 @@
       <a href="#edit-statement" class="tooltip" aria-label="Coming soon">Edit</a>
     </div>
 
-    <div class="mb20" v-html="data[heading.toLocaleLowerCase()]"></div>
+    <div
+      class="mb20"
+      v-html="data.dashboard[heading.toLocaleLowerCase()]"
+      v-show="data.loaded === 1">
+    </div>
+
+    <loading :loaded="data.loaded" class="mb20"></loading>
 
     <div class="flex justify-between items-center">
       <div>
@@ -27,10 +33,15 @@
 </template>
 
 <script>
+import Loading from './loading.vue';
+
 export default {
   props: {
     heading: String,
     data: Object
+  },
+  components: {
+    Loading
   }
 }
 </script>

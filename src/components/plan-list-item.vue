@@ -12,11 +12,12 @@
 <script>
 export default {
   props: {
-    plan: Object
+    plan: Object,
+    t: String
   },
   data: function () {
     return {
-      planPath: `/plan?name=${this.plan.sheet}`
+      planPath: `/plan?t=${this.t}&name=${this.plan.sheet}`
     };
   }
 }
