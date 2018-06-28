@@ -55,6 +55,11 @@ h4, .h3
 .md
   p, hr, ol, ul
     margin-bottom: 20px
+    li > :last-child
+      margin-bottom: 0
   code
     font-family: inherit
-    text-decoration: underline
+    color: map-get($colors, 'grey')
+    background: map-get($colors, 'fog')
+    padding: 1px 4px
+    border-radius: 3px

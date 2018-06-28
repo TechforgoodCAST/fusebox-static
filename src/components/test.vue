@@ -11,20 +11,20 @@
 
       <div class="p20">
         <h3 class="grey mb7">Details</h3>
-        <div class="mb20" v-html="test.details"></div>
+        <div class="mb20 md" v-html="test.details"></div>
 
         <h3 class="grey mb7">Success Critera</h3>
-        <div class="mb20" v-html="test.success"></div>
+        <div class="mb20 md" v-html="test.success"></div>
 
         <h3 class="grey mb7">Support &amp; Resources</h3>
-        <div v-html="test.support"></div>
+        <div class="md" v-html="test.support"></div>
       </div>
 
       <hr>
 
       <div class="p20 flex justify-between items-center">
         <div>
-          <a href="#category" class="mr15">{{ test.category }}</a>
+          <a href="#category" class="mr15 tooltip" aria-label="Coming soon">{{ test.category }}</a>
           <span class="grey">{{ test.assignees }}</span>
         </div>
 

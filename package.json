@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
     "dev": "webpack-dev-server --mode development",
-    "deploy": "npm run build && surge dist/ fusebox.surge.sh"
+    "staging": "npm run build && surge dist/ fusebox.surge.sh",
+    "production": "npm run build && surge dist/ app.fusebox.org.uk"
   },
   "repository": {
     "type": "git",

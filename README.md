@@ -15,4 +15,8 @@ Prerequisites: [NodeJS](https://nodejs.org/), [Yarn](https://yarnpkg.com/)
 
 ## Deployment
 
-`npm run deploy` to deploy to [fusebox.surge.sh](https://fusebox.surge.sh/)
+> Requires being added to list of collaborators.
+
+`npm run staging` deploys to [fusebox.surge.sh](https://fusebox.surge.sh/)
+
+`npm run production` deploys to [app.fusebox.org.uk](http://app.fusebox.org.uk/)

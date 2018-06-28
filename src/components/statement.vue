@@ -4,7 +4,7 @@
     <div class="mb20 flex justify-between items-center">
       <div>
         <h3 class="inline grey">{{ heading }}</h3>
-        <a href="#statement-count" class="ml7 tooltip" aria-label="Coming soon">(0)</a>
+        <a href="#statement-count" class="ml7 inline-b tooltip" aria-label="Coming soon">(0)</a>
       </div>
 
       <a href="#edit-statement" class="tooltip" aria-label="Coming soon">Edit</a>
