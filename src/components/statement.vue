@@ -4,14 +4,14 @@
     <div class="mb20 flex justify-between items-center">
       <div>
         <h3 class="inline grey">{{ heading }}</h3>
-        <a href="#statement-count" class="ml7">(0)</a>
+        <a href="#statement-count" class="ml7 tooltip" aria-label="Coming soon">(0)</a>
       </div>
 
       <a href="#edit-statement" class="tooltip" aria-label="Coming soon">Edit</a>
     </div>
 
     <div
-      class="mb20"
+      class="mb20 md"
       v-html="data.dashboard[heading.toLocaleLowerCase()]"
       v-show="data.loaded === 1">
     </div>
@@ -20,14 +20,14 @@
 
     <div class="flex justify-between items-center">
       <div>
-        <a href="#assumptions-count">0 assumptions</a>
+        <a href="#assumptions-count" class="tooltip" aria-label="Coming soon">0 assumptions</a>
         <span class="haze"> ❯ </span>
-        <a href="#tests-count">0 tests</a>
+        <a href="#tests-count" class="tooltip" aria-label="Coming soon">0 tests</a>
         <span class="haze"> ❯ </span>
-        <a href="#evidence-count">0 evidence</a>
+        <a href="#evidence-count" class="tooltip" aria-label="Coming soon">0 evidence</a>
       </div>
 
-      <a href="#add-assumption" class="btn white bg-aqua tooltip" aria-label="Coming soon">+</a>
+      <a href="#add-assumption" class="btn white bg-aqua shadow tooltip" aria-label="Coming soon">+</a>
     </div>
   </article>
 </template>

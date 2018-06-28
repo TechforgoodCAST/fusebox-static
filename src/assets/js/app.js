@@ -55,21 +55,24 @@ function initClient(gapi) {
 function getDashboard(gapi) {
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: DATA.params.t,
-    range: 'dashboard!A2:H',
+    range: 'dashboard!A2:I',
   }).then(function(response) {
     var range = response.result;
     if (range.values.length > 0) {
 
+      // TODO: refactor
       const firstRow = range.values[0]
       DATA.dashboard = {
         team: firstRow[0],
         project: firstRow[1],
         description: firstRow[2],
-        solution: marked(firstRow[3]),
-        user: marked(firstRow[4]),
-        social: marked(firstRow[5]),
-        financial: marked(firstRow[6]),
-        organisation: marked(firstRow[7])
+        website: firstRow[3],
+        solution: marked(firstRow[4] || '-'),
+        user: marked(firstRow[5] || '-'),
+        social: marked(firstRow[6] || '-'),
+        financial: marked(firstRow[7] || '-'),
+        organisation: marked(firstRow[8] || '-'),
+        updated: firstRow[8]
       };
 
     } else {
@@ -109,21 +112,22 @@ function getPlan(gapi, sheet) {
       const plan = {
         sheet: sheet,
         name: planDetails[0],
-        description: planDetails[1],
-        dueDate: planDetails[2],
-        lastUpdated: planDetails[3],
-        status: planDetails[4],
+        status: planDetails[1],
+        due: planDetails[2],
+        description: planDetails[3],
+        updated: planDetails[4],
         tests: []
       };
 
-      range.values.slice(4).forEach(function (row) {
+      range.values.slice(3).forEach(function (row) {
         plan.tests.push({
           assumption: row[0],
           status: row[1],
           category: row[2],
-          details: marked(row[5]),
-          success: marked(row[6]),
-          support: marked(row[7])
+          details: marked(row[3] || '-'),
+          success: marked(row[4] || '-'),
+          support: marked(row[5] || '-'),
+          assignees: row[6],
         });
       });
 

@@ -5,7 +5,10 @@
         {{ data.dashboard.team }} / <a :href="dashboardPath" class="snow bold">{{ data.dashboard.project }}</a>
       </h1>
 
-      <div class="h3">{{ data.dashboard.description }}</div>
+      <div class="h3">
+        <span class="mr10">{{ data.dashboard.description }}</span>
+        <a :href="data.dashboard.website" target="_blank" class="dusk">{{ data.dashboard.website }}</a>
+      </div>
     </div>
 
     <loading :loaded="data.loaded" wrapper="ml20"></loading>

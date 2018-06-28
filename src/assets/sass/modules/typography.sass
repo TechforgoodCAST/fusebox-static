@@ -1,6 +1,7 @@
 // Config
 // ===========================================================================
 
+@import colors
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700|Merriweather+Sans:400,700')
 
 $heading-family: 'Merriweather Sans', Helvetica, sans-serif !default
@@ -47,3 +48,13 @@ h4, .h3
   text-transform: uppercase
 .center
   text-align: center
+
+// Markdown
+// =========================================================================
+
+.md
+  p, hr, ol, ul
+    margin-bottom: 20px
+  code
+    font-family: inherit
+    text-decoration: underline

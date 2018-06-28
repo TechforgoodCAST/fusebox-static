@@ -58,7 +58,7 @@
 
 <style scoped>
 .active {
-  z-index: 10;
+  z-index: 1;
 }
 .inactive {
   background-color: rgba(255, 255, 255, 0.05);

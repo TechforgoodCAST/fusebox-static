@@ -6,8 +6,8 @@
       <h1 class="mb10">{{ plan.name }}</h1>
       <div class="mb15 grey">{{ plan.description }}</div>
       <div class="fs14 grey">
-        <span class="mr15">{{ plan.dueDate }}</span>
-        <span>{{ plan.lastUpdated }}</span>
+        <span class="mr15">{{ plan.due }}</span>
+        <span>{{ plan.updated }}</span>
       </div>
 
       <hr class="my30">

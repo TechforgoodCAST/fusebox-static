@@ -25,11 +25,12 @@
       <div class="p20 flex justify-between items-center">
         <div>
           <a href="#category" class="mr15">{{ test.category }}</a>
+          <span class="grey">{{ test.assignees }}</span>
         </div>
 
         <div class="flex">
-          <a href="#close-test" class="btn white bg-purple mr10 tooltip" aria-label="Coming soon">Close</a>
-          <a href="#add-assumption" class="btn white bg-aqua tooltip" aria-label="Coming soon">+</a>
+          <a href="#close-test" class="btn white bg-purple mr10 shadow tooltip" aria-label="Coming soon">Close</a>
+          <a href="#add-assumption" class="btn white bg-aqua shadow tooltip" aria-label="Coming soon">+</a>
         </div>
       </div>
     </article>
