@@ -4,6 +4,7 @@ import marked from 'marked';
 
 import queryParams from './modules/params.js';
 
+import Consent from '../../components/consent.vue';
 import Plan from '../../components/plan.vue';
 import PlanList from '../../components/plan-list.vue';
 import SiteFooter from '../../components/site-footer.vue';
@@ -22,6 +23,7 @@ const vm = new Vue({
   el: '#app',
   data: { data: DATA },
   components: {
+    Consent,
     Plan,
     PlanList,
     SiteFooter,

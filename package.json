@@ -20,7 +20,9 @@
     "url": "https://github.com/TechforgoodCAST/fusebox-static/issues"
   },
   "homepage": "https://github.com/TechforgoodCAST/fusebox-static#readme",
-  "dependencies": {},
+  "dependencies": {
+    "vue-cookie-accept-decline": "^2.0.0"
+  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
