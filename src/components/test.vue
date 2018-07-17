@@ -19,9 +19,11 @@
         <h3 class="grey mb7">Support &amp; Resources</h3>
         <div class="md" v-html="test.support"></div>
 
-        <!-- TODO: -->
-        <h3 class="grey mb7">Evidence</h3>
-        <a :href="newEvidencePath">+ Add</a>
+        <div class="p20 bg-ice flex justify-between">
+          <h3 class="grey">Evidence ({{ evidence.length }})</h3>
+          <a :href="newEvidencePath">+ Add</a>
+        </div>
+
         <evidence-show
           v-for="(e, index) in evidence"
           :key="index"
