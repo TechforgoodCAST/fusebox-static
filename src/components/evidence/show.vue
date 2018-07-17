@@ -5,6 +5,7 @@
       <a :href="e.editEvidenceUrl" target="_blank">Edit</a>
     </div>
     <div class="fs15">{{ e.details }}</div>
+    <em class="fs14">{{ e.source }}</em>
   </div>
 </template>
 

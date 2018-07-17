@@ -14,6 +14,9 @@
         <label for="details">Details</label>
         <textarea :name="data.config.formInputDetails" id="details" required></textarea>
 
+        <label for="name">Source</label>
+        <input :name="data.config.formInputSource" type="text" id="source">
+
         <label for="_ref" hidden>_ref</label>
         <input :name="data.config.formInputTestId" type="text" id="_ref" :value="data.params.testId" required hidden>
 

@@ -58,7 +58,7 @@ function initClient(gapi) {
 function getConfig(gapi) {
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: DATA.params.t,
-    range: 'config!A2:D2',
+    range: 'config!A2:E2',
   }).then(function(response) {
     var range = response.result;
     if (range.values) {
@@ -67,7 +67,8 @@ function getConfig(gapi) {
           formUrl: i[0],
           formInputName: i[1],
           formInputDetails: i[2],
-          formInputTestId: i[3]
+          formInputSource: i[3],
+          formInputTestId: i[4]
         };
       })
     }
@@ -110,16 +111,18 @@ function getDashboard(gapi) {
 function getEvidence(gapi) {
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: DATA.params.t,
-    range: 'evidence!B2:E',
+    range: 'evidence!A2:F',
   }).then(function(response) {
     var range = response.result;
     if (range.values) {
       range.values.forEach(function (i) {
         return DATA.evidence.push({
-          name: i[0],
-          details: i[1],
-          testId: i[2],
-          editEvidenceUrl: i[3]
+          lastUpdated: i[0],
+          name: i[1],
+          details: i[2],
+          source: i[3],
+          testId: i[4],
+          editEvidenceUrl: i[5]
         });
       })
     }
