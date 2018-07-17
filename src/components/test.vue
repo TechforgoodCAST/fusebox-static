@@ -18,6 +18,15 @@
 
         <h3 class="grey mb7">Support &amp; Resources</h3>
         <div class="md" v-html="test.support"></div>
+
+        <!-- TODO: -->
+        <h3 class="grey mb7">Evidence</h3>
+        <a :href="newEvidencePath">+ Add</a>
+        <evidence-show
+          v-for="(e, index) in evidence"
+          :key="index"
+          :e="e">
+        </evidence-show>
       </div>
 
       <hr>
@@ -30,7 +39,7 @@
 
         <div class="flex">
           <a href="#close-test" class="btn white bg-purple mr10 shadow tooltip" aria-label="Coming soon">Close</a>
-          <a href="#add-assumption" class="btn white bg-aqua shadow tooltip" aria-label="Coming soon">+</a>
+          <a :href="newEvidencePath" class="btn white bg-aqua shadow">+</a>
         </div>
       </div>
     </article>
@@ -38,9 +47,25 @@
 </template>
 
 <script>
+  import EvidenceShow from './evidence/show.vue';
+
   export default {
     props: {
+      data: Object,
       test: Object
+    },
+    components: {
+      EvidenceShow
+    },
+    data: function () {
+      return {
+        newEvidencePath: `/evidence/new?t=${this.data.params.t}&testId=${this.test.testId}`
+      }
+    },
+    computed: {
+      evidence: function () {
+        return this.data.evidence.filter((e) => e.testId === this.test.testId);
+      }
     }
   }
 </script>
