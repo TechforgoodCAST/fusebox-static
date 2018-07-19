@@ -52,7 +52,10 @@
     },
     methods: {
       submit: function() {
-        window.location.href = this.planPath;
+        const self = this;
+        return setTimeout(function() {
+          window.location.href = self.planPath;
+        }, 500);
       }
     }
   }
