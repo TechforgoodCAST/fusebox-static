@@ -5,6 +5,7 @@ import marked from 'marked';
 import queryParams from './modules/params.js';
 
 import Consent from '../../components/consent.vue';
+import Evidence from '../../components/evidence/new.vue';
 import Plan from '../../components/plan.vue';
 import PlanList from '../../components/plan-list.vue';
 import SiteFooter from '../../components/site-footer.vue';
@@ -14,9 +15,11 @@ import Statement from '../../components/statement.vue';
 const DISCOVERY_DOCS = ['https://sheets.googleapis.com/$discovery/rest?version=v4'];
 const DATA = {
   loaded: 0,
+  config: {},
   dashboard: {},
   plans: [],
-  params: queryParams.all(window.location.search, ['t', 'name'])
+  evidence: [],
+  params: queryParams.all(window.location.search, ['t', 'name', 'testId'])
 };
 
 const vm = new Vue({
@@ -24,16 +27,12 @@ const vm = new Vue({
   data: { data: DATA },
   components: {
     Consent,
+    Evidence,
     Plan,
     PlanList,
     SiteFooter,
     SiteHeader,
     Statement
-  },
-  methods: {
-    getPlan: function (sheetName) {
-      return this.data.plans.filter((i) => i.sheet === sheetName)[0];
-    }
   }
 });
 
@@ -49,8 +48,32 @@ function initClient(gapi) {
     apiKey: API_KEY,
     discoveryDocs: DISCOVERY_DOCS
   }).then(function () {
+    getConfig(gapi);
     getDashboard(gapi);
+    getEvidence(gapi);
     getPlans(gapi);
+  });
+}
+
+function getConfig(gapi) {
+  gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: DATA.params.t,
+    range: 'config!A2:E2',
+  }).then(function(response) {
+    var range = response.result;
+    if (range.values) {
+      range.values.forEach(function (i) {
+        return DATA.config = {
+          formUrl: i[0],
+          formInputName: i[1],
+          formInputDetails: i[2],
+          formInputSource: i[3],
+          formInputTestId: i[4]
+        };
+      })
+    }
+  }, function(response) {
+    DATA.loaded = -1;
   });
 }
 
@@ -79,6 +102,29 @@ function getDashboard(gapi) {
 
     } else {
       DATA.loaded = -1;
+    }
+  }, function(response) {
+    DATA.loaded = -1;
+  });
+}
+
+function getEvidence(gapi) {
+  gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: DATA.params.t,
+    range: 'evidence!A2:F',
+  }).then(function(response) {
+    var range = response.result;
+    if (range.values) {
+      range.values.forEach(function (i) {
+        return DATA.evidence.push({
+          lastUpdated: i[0],
+          name: i[1],
+          details: i[2],
+          source: i[3],
+          testId: i[4],
+          editEvidenceUrl: i[5]
+        });
+      })
     }
   }, function(response) {
     DATA.loaded = -1;
@@ -130,6 +176,7 @@ function getPlan(gapi, sheet) {
           success: marked(row[4] || '-'),
           support: marked(row[5] || '-'),
           assignees: row[6],
+          testId: row[7]
         });
       });
 
