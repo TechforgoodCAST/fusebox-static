@@ -119,8 +119,8 @@ function getEvidence(gapi) {
         return DATA.evidence.push({
           lastUpdated: i[0],
           name: i[1],
-          details: i[2],
-          source: i[3],
+          details: marked(i[2]),
+          source: marked(i[3]),
           testId: i[4],
           editEvidenceUrl: i[5]
         });
